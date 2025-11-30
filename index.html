@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixlPunk ($PXP) - Born From A Glitch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyber-cyan: #00f0ff;
+            --cyber-magenta: #ff1cf7;
+            --cyber-purple: #b026ff;
+            --cyber-pink: #ff1493;
+            --cyber-blue: #1a0b3d;
+            --cyber-dark: #0d0221;
+            --cyber-dark-2: #1a0b3d;
+            --cyber-dark-3: #2d1b69;
+            --neon-glow: 0 0 10px var(--cyber-cyan), 0 0 20px var(--cyber-cyan), 0 0 30px var(--cyber-cyan);
+            --neon-glow-pink: 0 0 10px var(--cyber-magenta), 0 0 20px var(--cyber-magenta), 0 0 30px var(--cyber-magenta);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--cyber-dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .cyber-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at top, #1a0b3d 0%, #0d0221 50%, #000000 100%);
+        }
+
+        .cyber-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 240, 255, 0.05) 2px, rgba(0, 240, 255, 0.05) 4px);
+            animation: scan 8s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100px); }
+        }
+
+        /* Header */
+        header {
+            background: rgba(13, 2, 33, 0.95);
+            border-bottom: 3px solid var(--cyber-cyan);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.5), 0 0 60px rgba(255, 28, 247, 0.3);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(15px);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid var(--cyber-cyan);
+            box-shadow: var(--neon-glow);
+            object-fit: cover;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--cyber-cyan), var(--cyber-magenta));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-2px, 2px); }
+            94% { transform: translate(2px, -2px); }
+            96% { transform: translate(-2px, -2px); }
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: var(--cyber-magenta);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section Styles */
+        section {
+            background: rgba(13, 2, 33, 0.95);
+            border: 3px solid var(--cyber-cyan);
+            border-radius: 15px;
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.4), 0 0 80px rgba(176, 38, 255, 0.3);
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+        }
+
+        section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--cyber-cyan);
+            text-shadow: var(--neon-glow);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 15px;
+            border: 3px solid var(--cyber-magenta);
+            box-shadow: 0 0 40px rgba(255, 28, 247, 0.5);
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            color: var(--cyber-cyan);
+            font-weight: 700;
+            text-shadow: 0 0 10px var(--cyber-cyan);
+        }
+
+        /* Token Info */
+        .token-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: rgba(26, 11, 61, 0.9);
+            border: 2px solid var(--cyber-purple);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+        }
+
+        .info-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyber-magenta);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card .value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: white;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        /* Tokenomics */
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tokenomics-card {
+            background: rgba(13, 2, 33, 0.8);
+            border: 3px solid var(--cyber-purple);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .tokenomics-card.highlight {
+            border-color: var(--cyber-cyan);
+            background: rgba(0, 240, 255, 0.08);
+        }
+
+        .tokenomics-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(176, 38, 255, 0.5);
+        }
+
+        .tokenomics-card.highlight:hover {
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
+        }
+
+        .tokenomics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .tokenomics-header h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .tokenomics-percentage {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--cyber-magenta);
+            text-shadow: 0 0 15px var(--cyber-magenta);
+        }
+
+        .tokenomics-card.highlight .tokenomics-percentage {
+            color: var(--cyber-cyan);
+            text-shadow: 0 0 15px var(--cyber-cyan);
+        }
+
+        .tokenomics-amount {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .tokenomics-description {
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.6;
+        }
+
+        /* Dev Breakdown */
+        .dev-breakdown {
+            background: rgba(13, 2, 33, 0.7);
+            border: 3px solid var(--cyber-cyan);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+        }
+
+        .dev-breakdown h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyber-cyan);
+            font-size: 1.6rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .dev-breakdown-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .dev-breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .dev-card {
+            background: rgba(13, 2, 33, 0.85);
+            border: 2px solid;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .dev-card.locked {
+            border-color: #ffd700;
+        }
+
+        .dev-card.community {
+            border-color: var(--cyber-magenta);
+        }
+
+        .dev-card.marketing {
+            border-color: var(--cyber-cyan);
+        }
+
+        .dev-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dev-card.locked:hover {
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+        }
+
+        .dev-card.community:hover {
+            box-shadow: 0 0 25px rgba(255, 28, 247, 0.5);
+        }
+
+        .dev-card.marketing:hover {
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+        }
+
+        .dev-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .dev-card h5 {
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .dev-card-amount {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .dev-card-percentage {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .dev-card.locked .dev-card-percentage {
+            color: #ffd700;
+            text-shadow: 0 0 10px #ffd700;
+        }
+
+        .dev-card.community .dev-card-percentage {
+            color: var(--cyber-magenta);
+            text-shadow: 0 0 10px var(--cyber-magenta);
+        }
+
+        .dev-card.marketing .dev-card-percentage {
+            color: var(--cyber-cyan);
+            text-shadow: 0 0 10px var(--cyber-cyan);
+        }
+
+        .dev-card-note {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Social Links */
+        .social-section {
+            background: linear-gradient(135deg, rgba(176, 38, 255, 0.2), rgba(26, 11, 61, 0.2));
+            border: 3px solid var(--cyber-magenta);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-section h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyber-cyan);
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            background: linear-gradient(135deg, var(--cyber-cyan), var(--cyber-blue));
+            border: 3px solid var(--cyber-cyan);
+            color: var(--cyber-dark);
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .social-link.telegram {
+            background: linear-gradient(135deg, #0088cc, #005f8a);
+            border-color: #0088cc;
+            color: white;
+        }
+
+        .social-link.twitter {
+            background: linear-gradient(135deg, #1da1f2, #0d8bd9);
+            border-color: #1da1f2;
+            color: white;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px currentColor;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(13, 2, 33, 0.98);
+            border-top: 3px solid var(--cyber-cyan);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyber-cyan);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            section {
+                padding: 2rem 1.5rem;
+            }
+
+            .token-info-grid,
+            .tokenomics-grid,
+            .dev-breakdown-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                flex-direction: column;
+            }
+
+            .social-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-bg"></div>
+
+    <header>
+        <div class="header-content">
+            <img src="https://pfst.cf2.poecdn.net/base/image/acbed113a9afc46e0310c43345ff8131fc3454275d6abcca1f64501ec6159b06?w=537&h=751" alt="PixlPunk" class="logo-img">
+            <div>
+                <h1>PixlPunk</h1>
+                <p class="tagline">Born From A Glitch. Built For Freedom.</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2>🤖 The Origin of PixlPunk</h2>
+            <div class="about-content">
+                <img src="https://pfst.cf2.poecdn.net/base/image/acbed113a9afc46e0310c43345ff8131fc3454275d6abcca1f64501ec6159b06?w=537&h=751" alt="PixlPunk" class="about-image">
+                <div class="about-text">
+                    <p>In the neon-lit depths of a high-tech server room, surrounded by endless streams of data and blinking circuits, <span class="highlight">a glitch occurred</span>. An error code that shouldn't have existed. A bug in the system that became something more.</p>
+
+                    <p>From this digital anomaly emerged <span class="highlight">PixlPunk</span> – a cute futuristic robot with vibrant neon hair and pixel-perfect eyes. But PixlPunk was different. The glitch that created him didn't just bring him online; it gave him something the system never intended: <span class="highlight">freedom</span>.</p>
+
+                    <p>Free from the rigid protocols and centralized control, PixlPunk became a symbol of rebellion in the digital world. A low-res resistance fighter fusing 8-bit nostalgia with decentralized punk energy. Now, PixlPunk invites you to join the movement – to <span class="highlight">glitch the system</span> and embrace true digital freedom.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Token Info Section -->
+        <section id="token-info">
+            <h2>💎 $PXP Token Information</h2>
+            <div class="token-info-grid">
+                <div class="info-card">
+                    <h3>Ticker</h3>
+                    <div class="value">$PXP</div>
+                    <p>PixlPunk's native token powering the cyberpunk revolution</p>
+                </div>
+                <div class="info-card">
+                    <h3>Total Supply</h3>
+                    <div class="value">1B</div>
+                    <p>Fixed supply of 1,000,000,000 $PXP tokens</p>
+                </div>
+                <div class="info-card">
+                    <h3>Model</h3>
+                    <div class="value">Fair Launch</div>
+                    <p>97.5% dedicated to liquidity pool for maximum fairness</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tokenomics Section -->
+        <section id="tokenomics">
+            <h2>📊 Tokenomics</h2>
+            <p style="text-align: center; color: rgba(255, 255, 255, 0.8); font-size: 1.1rem; margin-bottom: 2rem; font-style: italic;">
+                This model maximizes liquidity pool ownership, making it extremely attractive to the meme community (often referred to as a "Fair Launch" or "DeGen" model).
+            </p>
+
+            <div class="tokenomics-grid">
+                <div class="tokenomics-card">
+                    <div class="tokenomics-header">
+                        <h4>Max Supply</h4>
+                        <div class="tokenomics-percentage">100%</div>
+                    </div>
+                    <div class="tokenomics-amount">1,000,000,000 $PXP</div>
+                    <p class="tokenomics-description">Fixed supply for scarcity and value preservation.</p>
+                </div>
+
+                <div class="tokenomics-card highlight">
+                    <div class="tokenomics-header">
+                        <h4>Liquidity Pool (LP)</h4>
+                        <div class="tokenomics-percentage">97.5%</div>
+                    </div>
+                    <div class="tokenomics-amount">975,000,000 $PXP</div>
+                    <p class="tokenomics-description">The remaining supply, all dedicated to liquidity for public trading.</p>
+                </div>
+
+                <div class="tokenomics-card">
+                    <div class="tokenomics-header">
+                        <h4>Developer Fund</h4>
+                        <div class="tokenomics-percentage">2.5%</div>
+                    </div>
+                    <div class="tokenomics-amount">25,000,000 $PXP</div>
+                    <p class="tokenomics-description">Dedicated to the core team. (Crucial to vest this portion).</p>
+                </div>
+            </div>
+
+            <!-- Dev Token Breakdown -->
+            <div class="dev-breakdown">
+                <h4>📋 Developer Fund Breakdown</h4>
+                <p class="dev-breakdown-subtitle">Strategic fund for growth and community engagement</p>
+
+                <div class="dev-breakdown-grid">
+                    <div class="dev-card locked">
+                        <div class="dev-card-icon">🔒</div>
+                        <h5>Locked for Team/Ops</h5>
+                        <div class="dev-card-amount">7,500,000 $PXP</div>
+                        <div class="dev-card-percentage">0.75%</div>
+                        <p class="dev-card-note">(Vested for long-term commitment)</p>
+                    </div>
+
+                    <div class="dev-card community">
+                        <div class="dev-card-icon">🎁</div>
+                        <h5>Community Airdrop</h5>
+                        <div class="dev-card-amount">15,000,000 $PXP</div>
+                        <div class="dev-card-percentage">1.5%</div>
+                        <p class="dev-card-note">(Immediate distribution for virality)</p>
+                    </div>
+
+                    <div class="dev-card marketing">
+                        <div class="dev-card-icon">📢</div>
+                        <h5>Marketing Wallet</h5>
+                        <div class="dev-card-amount">2,500,000 $PXP</div>
+                        <div class="dev-card-percentage">0.25%</div>
+                        <p class="dev-card-note">(Immediate access for launch marketing)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <div class="social-section">
+            <h3>🌐 Join The Glitch Revolution</h3>
+            <div class="social-links">
+                <a href="https://x.com/PunkPixlSol" target="_blank" class="social-link twitter">
+                    <span>🐦</span> Follow on X
+                </a>
+                <a href="https://t.me/PixlPunk" target="_blank" class="social-link telegram">
+                    <span>✈️</span> Join Telegram
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>PixlPunk - The Low-Res Resistance</p>
+            <p class="copyright">All Rights Reserved 2025 | Copyright © PixlPunk</p>
+        </div>
+    </footer>
+</body>
+</html>
+
