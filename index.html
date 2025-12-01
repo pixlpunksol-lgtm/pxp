@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -565,6 +564,138 @@
             box-shadow: 0 0 30px currentColor;
         }
 
+        /* Contract Address Section */
+        .ca-section {
+            background: rgba(13, 2, 33, 0.9);
+            border: 3px solid var(--cyber-cyan);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .ca-section h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyber-cyan);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ca-box {
+            background: rgba(26, 11, 61, 0.9);
+            border: 2px solid var(--cyber-purple);
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ca-text {
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            word-break: break-all;
+            flex: 1;
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, var(--cyber-cyan), var(--cyber-blue));
+            border: 2px solid var(--cyber-cyan);
+            color: var(--cyber-dark);
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            box-shadow: var(--neon-glow);
+            transform: translateY(-2px);
+        }
+
+        .copy-btn.copied {
+            background: linear-gradient(135deg, #00ff00, #00aa00);
+            border-color: #00ff00;
+        }
+
+        /* Chart Section */
+        .chart-container {
+            background: rgba(13, 2, 33, 0.95);
+            border: 3px solid var(--cyber-cyan);
+            border-radius: 15px;
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.4), 0 0 80px rgba(176, 38, 255, 0.3);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-container h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--cyber-cyan);
+            text-shadow: var(--neon-glow);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .chart-iframe-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 75%;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 3px solid var(--cyber-purple);
+            box-shadow: 0 0 30px rgba(176, 38, 255, 0.3);
+        }
+
+        .chart-iframe-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .dex-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .dex-link {
+            background: linear-gradient(135deg, var(--cyber-purple), var(--cyber-magenta));
+            border: 3px solid var(--cyber-magenta);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .dex-link:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--neon-glow-pink);
+        }
+
         /* Footer */
         footer {
             background: rgba(13, 2, 33, 0.98);
@@ -655,6 +786,7 @@
                 <button class="tab-btn active" data-tab="home">Home</button>
                 <button class="tab-btn" data-tab="about">About</button>
                 <button class="tab-btn" data-tab="tokenomics">Tokenomics</button>
+                <button class="tab-btn" data-tab="chart">Chart</button>
             </nav>
         </div>
     </header>
@@ -672,7 +804,16 @@
                 </p>
 
                 <div class="buy-section">
-                    <a href="#" class="buy-btn">🚀 Buy $PXP Now</a>
+                    <a href="https://pump.fun/coin/8aHJX37PPKTycLyEX2tx5dafve3eZB9NhsxwWvqzpump" target="_blank" class="buy-btn">🚀 Buy $PXP Now</a>
+                </div>
+
+                <!-- Contract Address Section -->
+                <div class="ca-section">
+                    <h3>📋 Contract Address (CA)</h3>
+                    <div class="ca-box">
+                        <span class="ca-text" id="contractAddress">8aHJX37PPKTycLyEX2tx5dafve3eZB9NhsxwWvqzpump</span>
+                        <button class="copy-btn" id="copyBtn" onclick="copyCA()">📋 Copy</button>
+                    </div>
                 </div>
             </section>
 
@@ -793,9 +934,59 @@
                 </div>
 
                 <div class="buy-section" style="text-align: center;">
-                    <a href="#" class="buy-btn">🚀 Buy $PXP Now</a>
+                    <a href="https://pump.fun/coin/8aHJX37PPKTycLyEX2tx5dafve3eZB9NhsxwWvqzpump" target="_blank" class="buy-btn">🚀 Buy $PXP Now</a>
+                </div>
+
+                <!-- Contract Address Section -->
+                <div class="ca-section">
+                    <h3>📋 Contract Address (CA)</h3>
+                    <div class="ca-box">
+                        <span class="ca-text">8aHJX37PPKTycLyEX2tx5dafve3eZB9NhsxwWvqzpump</span>
+                        <button class="copy-btn" onclick="copyCA()">📋 Copy</button>
+                    </div>
                 </div>
             </section>
+
+            <!-- Community Section -->
+            <div class="social-section">
+                <h3>🌐 Join The Glitch Revolution</h3>
+                <div class="social-links">
+                    <a href="https://x.com/PunkPixlSol" target="_blank" class="social-link twitter">
+                        <span>🐦</span> Follow on X
+                    </a>
+                    <a href="https://t.me/PixlPunk" target="_blank" class="social-link telegram">
+                        <span>✈️</span> Join Telegram
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart Tab -->
+        <div id="chart-tab" class="tab-content">
+            <div class="chart-container">
+                <h2>📈 Live $PXP Chart</h2>
+                <div class="chart-iframe-wrapper">
+                    <iframe src="https://dexscreener.com/solana/gh4dmujm6zvfr9qszbtwln9gtkgrzb3sdmwqcbojjqkr?embed=1&theme=dark&trades=0&info=0"></iframe>
+                </div>
+
+                <div class="dex-links">
+                    <a href="https://dexscreener.com/solana/gh4dmujm6zvfr9qszbtwln9gtkgrzb3sdmwqcbojjqkr" target="_blank" class="dex-link">
+                        📊 View on DEXScreener
+                    </a>
+                    <a href="https://pump.fun/coin/8aHJX37PPKTycLyEX2tx5dafve3eZB9NhsxwWvqzpump" target="_blank" class="buy-btn">
+                        🚀 Buy $PXP Now
+                    </a>
+                </div>
+
+                <!-- Contract Address Section -->
+                <div class="ca-section">
+                    <h3>📋 Contract Address (CA)</h3>
+                    <div class="ca-box">
+                        <span class="ca-text">8aHJX37PPKTycLyEX2tx5dafve3eZB9NhsxwWvqzpump</span>
+                        <button class="copy-btn" onclick="copyCA()">📋 Copy</button>
+                    </div>
+                </div>
+            </div>
 
             <!-- Community Section -->
             <div class="social-section">
@@ -840,6 +1031,39 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
+
+        // Copy Contract Address function
+        function copyCA() {
+            const contractAddress = '8aHJX37PPKTycLyEX2tx5dafve3eZB9NhsxwWvqzpump';
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(contractAddress).then(() => {
+                // Get all copy buttons
+                const copyButtons = document.querySelectorAll('.copy-btn');
+
+                // Update all copy buttons
+                copyButtons.forEach(btn => {
+                    btn.textContent = '✅ Copied!';
+                    btn.classList.add('copied');
+
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        btn.textContent = '📋 Copy';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                // Show error in button
+                const copyButtons = document.querySelectorAll('.copy-btn');
+                copyButtons.forEach(btn => {
+                    btn.textContent = '❌ Failed';
+                    setTimeout(() => {
+                        btn.textContent = '📋 Copy';
+                    }, 2000);
+                });
+            });
+        }
     </script>
 </body>
 </html>
